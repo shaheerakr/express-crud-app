@@ -1,0 +1,16 @@
+{
+    "host": "localhost",
+    "port" : 5000,
+    "url" : "http://",
+    "mongodb" : {
+        "host" : "localhost",
+        "port" : 27015,
+        "dbname" : "crud"
+    },
+    "logs" : {
+        "dir" : "logs",
+        "info" : "info.log",
+        "err" : "err.log",
+        "exception" : "exception.log"
+    }
+}
