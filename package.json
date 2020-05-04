@@ -4,15 +4,19 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "shaheerakr",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.5.7",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

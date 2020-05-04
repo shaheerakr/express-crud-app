@@ -20,7 +20,7 @@ var customLevels = {
     // Ex: debug -> info -> warning -> error.
     // A transport that handles info will not log debug messages but will log info, warning and error.
     levels: {       
-        err: 1,
+        error: 1,
         info: 2,
         warn: 3,
         verbose:3,
@@ -28,7 +28,7 @@ var customLevels = {
         debug: 5,
     },
     colors: {       
-        err: 'red',
+        error: 'red',
         info: 'green',
         warn: 'yellow',
         verbose:'red',
@@ -46,7 +46,7 @@ module.exports = {
         transports: [
             new winston.transports.File({
                 name: 'error-file',
-                level: 'err',
+                level: 'error',
                 filename: logDir+'/'+errLog,
                 json: true,
                 maxsize: 5242880, //5MB
@@ -54,7 +54,7 @@ module.exports = {
                 colorize: true
             }),
             new (winston.transports.Console)({
-                level: 'err', // Only write logs of info level or higher
+                level: 'error', // Only write logs of info level or higher
                 levels: 1,
                 colorize: true
             })

@@ -4,7 +4,7 @@
     "url" : "http://",
     "mongodb" : {
         "host" : "localhost",
-        "port" : 27015,
+        "port" : 27017,
         "dbname" : "crud"
     },
     "logs" : {

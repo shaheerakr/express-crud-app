@@ -9,29 +9,28 @@ class mongoInstance{
         );
         this.db = null;
     }
-    connect = async (callback) =>{
+    async connect(){
         try {
-            await this.client.connect( (err,client) => {
-                if(err){
-                    errorLog.error("error while connecting to mongodb cluster: "+err);
-                    throw err;
-                }
-                this.db = client.db(config.mongodb.dbname);
-                if(this.client.isConnected()){
-                    infoLog.info("successfully conected to mongodb cluster...");
-                }
-                else{
-                    errorLog.error("mongodb cluster is down...");
-                }
-                return callback(err,this.db);
-            });
+            await this.client.connect()
+            if (this.client.isConnected()) {
+                infoLog.info("successfully conected to mongodb cluster...");
+            }
+            else {
+                errorLog.error("mongodb cluster is down...");
+            }
+            this.db = await this.client.db(config.mongodb.dbname);
+            return this.db 
 
         } catch (error) {
             errorLog.error("mongodb cluster is down... "+ error);
         }
     }
-    disconect = async () =>{
-        this.client.close()
+    async isConnected(){
+        return this.client.isConnected();
+    }
+    async disconect(){
+        infoLog.info("disconected with mongodb cluster...")
+        await this.client.close();
     }
 }
 
