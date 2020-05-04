@@ -12,21 +12,24 @@ class mongoDal {
             
             if(this.mongoClient.isConnected()) {
                 try{
-                
                     //infoLog.info(db);
                     const r = await db.collection(doc.collection).insertOne({
                         "name" : doc.body.name,
                         "age" : doc.body.age,
                         "grade" : doc.body.grade
                     });
-                    if(r.insertedCount != 1){
+                    if(r.result.ok === 1){
+                        infoLog.info("successfully inserted document ");
+                        return {success : true, body : doc};
+                    }
+                    else if(r.insertedCount !== 1){
                         errorLog.error("tried to insert more then one document: "+ r);
                         errorLog.error(doc);
                         return {success : false, count : r.insertedCount}
                     }
-                    else {
-                        infoLog.info("successfully inserted document");
-                        return {success : true, body : doc};
+                    else{
+                        errorLog.error("error while inserting document: "+r);
+                        return {success : false, body : r.result}    
                     }
                 }
                 catch (error) {
