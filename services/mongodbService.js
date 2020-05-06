@@ -5,7 +5,8 @@ const config = require('../config/config.json'),
 class mongoInstance{
     constructor(){
         this.client = new mongo.MongoClient(
-            'mongodb://'+config.mongodb.host+':'+config.mongodb.port
+            'mongodb://'+config.mongodb.host+':'+config.mongodb.port,
+            {useUnifiedTopology: true}
         );
         this.db = null;
     }
